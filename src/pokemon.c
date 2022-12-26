@@ -6297,3 +6297,99 @@ void *OakSpeechNidoranFGetBuffer(u8 bufferId)
         return sOakSpeechNidoranResources->bufferPtrs[bufferId];
     }
 }
+
+#if SPANISH
+/**
+ * En el offset 0x08044D1C de Rojo Fuego se encontró 3 nuevas
+ * funciones que no se encontraban en Fire Red. Al parecer es
+ * un intento por cambiar el orden de la clase y el nombre de
+ * entrenador cuando el trainer es del TEAM ROCKET.
+*/
+
+//Is_trainer_class_n_name_in_src
+static bool32 es_sub_8044D1C(u8 *src)
+{
+    u8 *r1;
+    bool8 r2;
+
+    r1 = src;
+    r2 = FALSE;
+
+    if (r1 == NULL)
+        return FALSE;
+
+    while (r1[0] != EOS)
+    {
+        switch (r2)
+        {
+        case FALSE:
+            if (r1[0] == 0xFD && r1[1] == 0x1C)//B_TRAINER1_CLASS = FD 1C
+            {
+                r1++;
+                r2 = TRUE;
+            }
+            break;
+        case TRUE:
+            if (r1[0] == 0xFD && r1[1] == 0x1D)//B_TRAINER1_NAME = FD 1D
+                return 1;
+            break;
+        }
+        r1++;
+    }
+
+    return FALSE;
+}
+
+//Swap_trainer_class_n_name_gStringVar3
+static void es_sub_8044D64()
+{
+    u8 *r1;
+    bool8 r2;
+
+    r2 = FALSE;
+    r1 = gStringVar3;
+
+    while (r1[0] != EOS)
+    {
+        switch (r2)
+        {
+        case FALSE:
+            if (r1[0]==0xFD && r1[1]==0x1C) //B_TRAINER1_CLASS = FD 1C
+            {
+                r1[1] = 0x1D;               //B_TRAINER1_NAME = FD 1D
+                r1++;
+                r2 = TRUE;
+            }
+            break;
+        case TRUE:
+            if (r1[0]==0xFD && r1[1]==0x1D) //B_TRAINER1_NAME = FD 1D
+                r1[1] = 0x1C;               //B_TRAINER1_CLASS = FD 1C
+            return;
+        }
+        r1++;
+    }
+}
+
+u8 *es_sub_8044DB0(u8 *src)
+{
+    u8 *r5;
+
+    r5 = src;
+
+    if (!(gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TRAINER)))
+    {
+        if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_TEAM_ROCKET)
+        {
+            if(es_sub_8044D1C(src))
+            {
+                StringCopy(gStringVar3, src);
+                es_sub_8044D64();
+                r5 = gStringVar3;
+            }
+        }
+    }
+    
+    return r5;
+}
+
+#endif

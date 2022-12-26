@@ -1,7 +1,7 @@
 #ifndef GUARD_GBA_ISAGBPRINT_H
 #define GUARD_GBA_ISAGBPRINT_H
 
-#ifdef NDEBUG
+#if NDEBUG || SPANISH
 #define AGBPrintInit()
 #define AGBPutc(cChr)
 #define AGBPrint(pBuf)
@@ -20,14 +20,14 @@ void AGBAssert(const char *pFile, int nLine, const char *pExpression, int nStopP
 #endif
 
 #undef AGB_ASSERT
-#ifdef NDEBUG
+#if NDEBUG || SPANISH
 #define	AGB_ASSERT(exp)
 #else
 #define	AGB_ASSERT(exp) (exp) ? ((void *)0) : AGBAssert(__FILE__, __LINE__, #exp, 1);
 #endif
 
 #undef AGB_WARNING
-#ifdef NDEBUG
+#if NDEBUG || SPANISH
 #define	AGB_WARNING(exp)
 #else
 #define	AGB_WARNING(exp) (exp) ? ((void *)0) : AGBAssert(__FILE__, __LINE__, #exp, 0);
@@ -39,13 +39,13 @@ void AGBAssert(const char *pFile, int nLine, const char *pExpression, int nStopP
 #define AGB_ASSERT_EX(exp, file, line) AGB_ASSERT(exp)
 #define AGB_WARNING_EX(exp, file, line) AGB_WARNING(exp)
 #else
-#ifdef NDEBUG
+#if NDEBUG || SPANISH
 #define	AGB_ASSERT_EX(exp, file, line)
 #else
 #define	AGB_ASSERT_EX(exp, file, line) (exp) ? ((void *)0) : AGBAssert(file, line, #exp, 1);
 #endif
 
-#ifdef NDEBUG
+#if NDEBUG || SPANISH
 #define	AGB_WARNING_EX(exp, file, line)
 #else
 #define	AGB_WARNING_EX(exp, file, line) (exp) ? ((void *)0) : AGBAssert(file, line, #exp, 0);

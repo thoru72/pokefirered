@@ -202,6 +202,7 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     AddTextPrinterParameterized(windowId, FONT_NORMAL, mapName, xpos, 2, TEXT_SKIP_DRAW, NULL);
 }
 
+#if ENGLISH
 static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
 {
     if (floorNum == 0)
@@ -219,6 +220,47 @@ static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
     *dest = EOS;
     return dest;
 }
+#elif SPANISH
+//off_83CF324
+static const u8 *const sFloorNamePointers_up[] = {
+    gText_1F,
+    gText_2F,
+    gText_3F,
+    gText_4F,
+    gText_5F,
+    gText_6F,
+    gText_7F,
+    gText_8F,
+    gText_9F,
+    gText_10F,
+    gText_11F,
+    gText_Rooftop
+};
+
+//off_83CF354
+static const u8 *const sFloorNamePointers_down[] = {
+    gText_B1F,
+    gText_B2F,
+    gText_B3F,
+    gText_B4F
+};
+
+static u8 *MapNamePopupAppendFloorNum(u8 *dest, s8 floorNum)
+{
+    if (floorNum == 0)
+        return dest;
+
+    *dest++ = CHAR_SPACE;
+
+    if (floorNum == 0x7F)
+        return StringCopy(dest, gText_Rooftop2);
+
+    if (floorNum < 0)
+        return StringCopy(dest, sFloorNamePointers_down[~floorNum]);
+
+    return StringCopy(dest, sFloorNamePointers_up[floorNum - 1]);
+}
+#endif
 
 #undef tPalIntoFadedBuffer
 #undef tWindowDestroyed

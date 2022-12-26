@@ -65,6 +65,9 @@ static void PrintOptionMenuHeader(void);
 static void DrawOptionMenuBg(void);
 static void LoadOptionMenuItemNames(void);
 static void UpdateSettingSelectionDisplay(u16 selection);
+#if SPANISH
+static void es_sub_8088B2C(void);
+#endif
 
 // Data Definitions
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -383,13 +386,21 @@ static void Task_OptionMenu(u8 taskId)
         case 2:
             LoadBgTiles(1, GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
             LoadPalette(GetUserWindowGraphics(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, 0x20, 0x20);
+#if ENGLISH
             BufferOptionMenuString(sOptionMenuPtr->cursorPos);
+#elif SPANISH
+            es_sub_8088B2C();
+#endif
             break;
         case 3:
             UpdateSettingSelectionDisplay(sOptionMenuPtr->cursorPos);
             break;
         case 4:
+#if ENGLISH
             BufferOptionMenuString(sOptionMenuPtr->cursorPos);
+#elif SPANISH
+            es_sub_8088B2C();
+#endif
             break;
         }
         break;
@@ -504,6 +515,48 @@ static void BufferOptionMenuString(u8 selection)
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
 }
+
+#if SPANISH
+static void es_sub_8088B2C(void)
+{
+    u8 str[20];
+    u8 buf[12];
+    u8 dst[3];
+    u8 x;
+    u8 y;
+    u8 tmp_var_2;
+    u8 tmp_var_4;
+
+    memcpy(dst, sOptionMenuTextColor, 3);
+    tmp_var_4 = GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT);
+    tmp_var_2 = tmp_var_4 - 1;
+    x = 0x82;
+    y = 2;
+    FillWindowPixelRect(1, 1, x, y, 0x46, tmp_var_4 + tmp_var_2 * 6);
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTextSpeedOptions[sOptionMenuPtr->option[MENUITEM_TEXTSPEED]]);
+
+    y = tmp_var_2 + 2;
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleSceneOptions[sOptionMenuPtr->option[MENUITEM_BATTLESCENE]]);
+
+    y += tmp_var_2;
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[MENUITEM_BATTLESTYLE]]);
+
+    y += tmp_var_2;
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[MENUITEM_SOUND]]);
+
+    y += tmp_var_2;
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[MENUITEM_BUTTONMODE]]);
+
+    y += tmp_var_2;
+    StringCopy(str, gText_FrameType);
+    ConvertIntToDecimalStringN(buf, sOptionMenuPtr->option[MENUITEM_FRAMETYPE] + 1, 1, 2);
+    StringAppendN(str, buf, 3);
+    AddTextPrinterParameterized3(1, 2, x, y, dst, -1, str);
+
+    PutWindowTilemap(1);
+    CopyWindowToVram(1, COPYWIN_FULL);
+}
+#endif
 
 static void CloseAndSaveOptionMenu(u8 taskId)
 {

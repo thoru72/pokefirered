@@ -1640,6 +1640,7 @@ bool8 ScrCmd_bufferitemnameplural(struct ScriptContext * ctx)
     u16 quantity = VarGet(ScriptReadHalfword(ctx));
 
     CopyItemName(itemId, sScriptStringVars[stringVarIndex]);
+#if ENGLISH
     if (itemId == ITEM_POKE_BALL && quantity >= 2)
         StringAppend(sScriptStringVars[stringVarIndex], sText_S);
     else if (itemId >= FIRST_BERRY_INDEX && itemId < LAST_BERRY_INDEX && quantity >= 2)
@@ -1652,6 +1653,7 @@ bool8 ScrCmd_bufferitemnameplural(struct ScriptContext * ctx)
             StringAppend(sScriptStringVars[stringVarIndex], sText_IES);
         }
     }
+#endif
 
     return FALSE;
 }

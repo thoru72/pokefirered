@@ -3,8 +3,14 @@
 
 AUTO_GEN_TARGETS += $(DATA_C_SUBDIR)/items.h
 
+ifeq ($(GAME_LANGUAGE),ENGLISH)
 $(DATA_C_SUBDIR)/items.h: $(DATA_C_SUBDIR)/items.json $(DATA_C_SUBDIR)/items.json.txt
 	$(JSONPROC) $^ $@
+endif #ENGLISH
+ifeq ($(GAME_LANGUAGE),SPANISH)
+$(DATA_C_SUBDIR)/items_es.h: $(DATA_C_SUBDIR)/items.json $(DATA_C_SUBDIR)/items_es.json.txt
+	$(JSONPROC) $^ $@
+endif #SPANISH
 
 $(C_BUILDDIR)/item.o: c_dep += $(DATA_C_SUBDIR)/items.h
 

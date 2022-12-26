@@ -715,7 +715,11 @@ static void HandleMoveSwitching(void)
         MoveSelectionDisplayPpNumber();
         MoveSelectionDisplayMoveType();
     }
+#if ENGLISH
     if (JOY_NEW(B_BUTTON))
+#elif SPANISH
+    else if (JOY_NEW(B_BUTTON))
+#endif
     {
         PlaySE(SE_SELECT);
         MoveSelectionDestroyCursorAt(gMultiUsePlayerCursor);
@@ -728,7 +732,11 @@ static void HandleMoveSwitching(void)
         MoveSelectionDisplayPpNumber();
         MoveSelectionDisplayMoveType();
     }
+#if ENGLISH
     if (JOY_NEW(DPAD_LEFT))
+#elif SPANISH
+    else if (JOY_NEW(DPAD_LEFT))
+#endif
     {
         if (gMultiUsePlayerCursor & 1)
         {
@@ -744,7 +752,11 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
+#if ENGLISH
     if (JOY_NEW(DPAD_RIGHT))
+#elif SPANISH
+    else if (JOY_NEW(DPAD_RIGHT))
+#endif
     {
         if (!(gMultiUsePlayerCursor & 1) && (gMultiUsePlayerCursor ^ 1) < gNumberOfMovesToChoose)
         {
@@ -760,7 +772,11 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
+#if ENGLISH
     if (JOY_NEW(DPAD_UP))
+#elif SPANISH
+    else if (JOY_NEW(DPAD_UP))
+#endif
     {
         if (gMultiUsePlayerCursor & 2)
         {
@@ -776,7 +792,11 @@ static void HandleMoveSwitching(void)
                 MoveSelectionCreateCursorAt(gMultiUsePlayerCursor, 27);
         }
     }
+#if ENGLISH
     if (JOY_NEW(DPAD_DOWN))
+#elif SPANISH
+    else if (JOY_NEW(DPAD_DOWN))
+#endif
     {
         if (!(gMultiUsePlayerCursor & 2) && (gMultiUsePlayerCursor ^ 2) < gNumberOfMovesToChoose)
         {

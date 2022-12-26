@@ -24,7 +24,7 @@ struct AGBPrintStruct
 
 typedef void (*LPFN_PRINT_FLUSH)(void);
 
-#ifndef NDEBUG
+#if !NDEBUG && (ENGLISH || !SPANISH)
 
 void AGBPrintFlush1Block(void);
 

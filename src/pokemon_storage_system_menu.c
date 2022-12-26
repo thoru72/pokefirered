@@ -284,6 +284,9 @@ static void Task_PCMainMenu(u8 taskId)
             ClearStdWindowAndFrame(task->tWindowId, TRUE);
             UnlockPlayerFieldControls();
             ScriptContext_Enable();
+#if SPANISH
+            RemoveWindow(task->tWindowId);
+#endif
             DestroyTask(taskId);
             break;
         default:
@@ -345,6 +348,9 @@ static void Task_PCMainMenu(u8 taskId)
         {
             CleanupOverworldWindowsAndTilemaps();
             EnterPokeStorage(task->tInput);
+#if SPANISH
+            RemoveWindow(task->tWindowId);
+#endif
             DestroyTask(taskId);
         }
         break;

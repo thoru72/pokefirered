@@ -40,7 +40,12 @@ ifeq ($(GAME_LANGUAGE),ENGLISH)
 BUILD_NAME  := $(BUILD_NAME)
 GAME_CODE   := $(GAME_CODE)E
 else
+ifeq ($(GAME_LANGUAGE),SPANISH)
+BUILD_NAME  := $(BUILD_NAME)_es
+GAME_CODE   := $(GAME_CODE)S
+else
 $(error unknown language $(GAME_LANGUAGE))
+endif
 endif
 
 # Modern GCC

@@ -1132,6 +1132,7 @@ static void PrintNameOnCardFront(void)
     AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardFrontNameXPositions[sTrainerCardDataPtr->cardType], sTrainerCardFrontNameYPositions[sTrainerCardDataPtr->cardType], sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer[0]);
 }
 
+#if ENGLISH
 static void PrintIdOnCard(void)
 {
     u8 buffer[32];
@@ -1141,6 +1142,28 @@ static void PrintIdOnCard(void)
     ConvertIntToDecimalStringN(txtPtr, sTrainerCardDataPtr->trainerCard.rse.trainerId, STR_CONV_MODE_LEADING_ZEROS, 5);
     AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardIdXPositions[sTrainerCardDataPtr->cardType], sTrainerCardIdYPositions[sTrainerCardDataPtr->cardType], sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
 }
+#elif SPANISH
+static void PrintIdOnCard(void)
+{
+    u8 buffer[32];
+    u8 *txtPtr;
+    u32 x, y;
+
+    txtPtr = StringCopy(buffer, gText_TrainerCardIDNo);
+    ConvertIntToDecimalStringN(txtPtr, sTrainerCardDataPtr->trainerCard.rse.trainerId, STR_CONV_MODE_LEADING_ZEROS, 5);
+    if (!sTrainerCardDataPtr->cardType)
+    {
+        x = ((u32)(88 - GetStringWidth(sTrainerCardFontIds[1], buffer, 0)) >> 1) + 128;
+        y = 10;
+    }
+    else
+    {
+        x = 128;
+        y = 9;
+    }
+    AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], x, y, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
+}
+#endif
 
 static void PrintMoneyOnCard(void)
 {
@@ -1148,8 +1171,13 @@ static void PrintMoneyOnCard(void)
     u8 *txtPtr;
     u8 x;
 
+#if ENGLISH
     txtPtr = StringCopy(buffer, gText_TrainerCardYen);
     ConvertIntToDecimalStringN(txtPtr, sTrainerCardDataPtr->trainerCard.rse.money, STR_CONV_MODE_LEFT_ALIGN, 6);
+#elif SPANISH
+    txtPtr = ConvertIntToDecimalStringN(buffer, sTrainerCardDataPtr->trainerCard.rse.money, STR_CONV_MODE_LEFT_ALIGN, 6);
+    StringCopy(txtPtr, gText_TrainerCardYen);
+#endif
     if (sTrainerCardDataPtr->cardType != CARD_TYPE_RSE)
     {
         x = -122 - 6 * StringLength(buffer);
@@ -1257,7 +1285,12 @@ static void BufferNameForCardBack(void)
     ConvertInternationalString(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], sTrainerCardDataPtr->language);
     if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
     {
+#if ENGLISH
         StringAppend(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], gText_Var1sTrainerCard);
+#elif SPANISH
+        StringCopy(gStringVar1,sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME]);
+        StringExpandPlaceholders(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], gText_Var1sTrainerCard);
+#endif
     }
 }
 

@@ -214,6 +214,18 @@ u8 *ConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows
     return dest;
 }
 
+/**
+ * ACIMUT: 20221225
+ * es_sub_080BDAE0
+ * size: 0xE4
+*/
+
+void es_sub_080BDAE0(void)
+{
+    return;
+}
+
+//080BDBC4
 static u16 GetEasyChatWordStringLength(u16 easyChatWord)
 {
     if (easyChatWord == EC_WORD_UNDEFINED)

@@ -5841,7 +5841,15 @@ static void DrawLevelUpBannerText(void)
     txtPtr = gStringVar4;
     gStringVar4[0] = CHAR_EXTRA_SYMBOL;
     *++txtPtr = CHAR_LV_2;
+#if ENGLISH
     *++txtPtr = 0;
+#elif SPANISH
+    *++txtPtr = CHAR_EXTRA_SYMBOL;
+    *++txtPtr = 0x18;//CHAR_LV_2 BPRS
+    *++txtPtr = EXT_CTRL_CODE_BEGIN;
+    *++txtPtr = EXT_CTRL_CODE_CLEAR;
+    *++txtPtr = 5;
+#endif
     txtPtr2 = txtPtr + 1;
     txtPtr = ConvertIntToDecimalStringN(++txtPtr, monLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
     txtPtr = StringFill(txtPtr, 0, 5);
