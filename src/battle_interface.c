@@ -1416,7 +1416,7 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
         }
         else
         {
-            for (var = 0, i = 0, j = 0; j < PARTY_SIZE; j++)
+            for (var = PARTY_SIZE - 1, i = 0, j = 0; j < PARTY_SIZE; j++)
             {
                 if (partyInfo[j].hp == HP_EMPTY_SLOT)
                 {
@@ -1427,13 +1427,13 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
                 }
                 else if (partyInfo[j].hp == 0)
                 {
-                    gSprites[ballIconSpritesIds[PARTY_SIZE - 1 - var]].oam.tileNum += 3;
+                    gSprites[ballIconSpritesIds[var]].oam.tileNum += 3;
                 }
                 else if (partyInfo[j].status != STATUS1_NONE)
                 {
-                    gSprites[ballIconSpritesIds[PARTY_SIZE - 1 - var]].oam.tileNum += 2;
+                    gSprites[ballIconSpritesIds[var]].oam.tileNum += 2;
                 }
-                var++;
+                var--;
             }
         }
     }
