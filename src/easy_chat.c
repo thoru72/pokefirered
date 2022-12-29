@@ -214,18 +214,60 @@ u8 *ConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows
     return dest;
 }
 
-/**
- * ACIMUT: 20221225
- * es_sub_080BDAE0
- * size: 0xE4
-*/
-
-void es_sub_080BDAE0(void)
+#if SPANISH
+u8 *es_sub_080BDAE0(u8 *dest, const u16 *src, u16 columns, u16 rows)
 {
-    return;
-}
+    u16 i, j, k;
+    u16 numColumns;
+    int notEmpty, lineNumber;
 
-//080BDBC4
+    numColumns = columns;
+    lineNumber = 0;
+    columns--;
+    for (i = 0; i < rows; i++)
+    {
+        const u16 *str = src;
+        notEmpty = FALSE;
+        for (j = 0; j < numColumns; j++)
+        {
+            if (str[j] != EC_WORD_UNDEFINED)
+                notEmpty = TRUE;
+        }
+
+        if (!notEmpty)
+        {
+            src += numColumns;
+            continue;
+        }
+
+        for (k = 0; k < columns; k++)
+        {
+            dest = CopyEasyChatWord(dest, *src);
+            if (*src != EC_WORD_UNDEFINED)
+            {
+                *dest = CHAR_SPACE;
+                dest++;
+            }
+
+            src++;
+        }
+
+        dest = CopyEasyChatWord(dest, *(src++));
+        if (lineNumber == 0)
+            *dest = CHAR_NEWLINE;
+        else
+            *dest = CHAR_PROMPT_SCROLL;
+
+        dest++;
+        lineNumber++;
+    }
+
+    dest--;
+    *dest = EOS;
+    return dest;
+}
+#endif
+
 static u16 GetEasyChatWordStringLength(u16 easyChatWord)
 {
     if (easyChatWord == EC_WORD_UNDEFINED)
