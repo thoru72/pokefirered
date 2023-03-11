@@ -793,8 +793,16 @@ static void Task_EvolutionScene(u8 taskId)
             {
                 u8 text[20];
 
+#if ENGLISH
                 StopMapMusic();
                 Overworld_PlaySpecialMapMusic();
+#elif SPANISH
+                if (!(gTasks[taskId].tBits & TASK_BIT_LEARN_MOVE))
+                {
+                    StopMapMusic();
+                    Overworld_PlaySpecialMapMusic();
+                }
+#endif
                 gTasks[taskId].tBits |= TASK_BIT_LEARN_MOVE;
                 gTasks[taskId].tLearnsFirstMove = FALSE;
                 gTasks[taskId].tLearnMoveState = MVSTATE_INTRO_MSG_1;
