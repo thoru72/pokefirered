@@ -3,9 +3,9 @@
 
 #if ENGLISH
 #include "data/text/strings_1_en.h"
-#include "data/text/quest_log.h"
+#include "data/text/quest_log_en.h"
 #include "data/text/strings_2_en.h"
-#include "data/text/teachy_tv.h"
+#include "data/text/teachy_tv_en.h"
 #include "data/text/strings_3_en.h"
 #elif SPANISH
 #include "data/text/strings_1_es.h"

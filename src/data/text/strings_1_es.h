@@ -1,7 +1,7 @@
-const u8 gExpandedPlaceholder_Empty[] = _("");//0x410159
+const u8 gExpandedPlaceholder_Empty[] = _("");
 const u8 gExpandedPlaceholder_Kun[] = _("");
 const u8 gExpandedPlaceholder_Chan[] = _("");
-const u8 gExpandedPlaceholder_Sapphire[] = _("ZAFIRO");//0x410163
+const u8 gExpandedPlaceholder_Sapphire[] = _("ZAFIRO");
 const u8 gExpandedPlaceholder_Ruby[] = _("RUBÍ");
 const u8 gExpandedPlaceholder_Aqua[] = _("AQUA");
 const u8 gExpandedPlaceholder_Magma[] = _("MAGMA");
