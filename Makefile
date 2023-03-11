@@ -339,12 +339,12 @@ $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 endif #SPANISH
 
 ifeq ($(MODERN),0)
-ifeq ($(GAME_LANGUAGE),ENGLISH)
-LD_SCRIPT := ld_script.txt
-endif #ENGLISH
-ifeq ($(GAME_LANGUAGE),SPANISH)
-LD_SCRIPT := ld_script_es.txt
-endif #SPANISH
+  ifeq ($(GAME_LANGUAGE),ENGLISH)
+    LD_SCRIPT := ld_script.txt
+  endif #ENGLISH
+  ifeq ($(GAME_LANGUAGE),SPANISH)
+    LD_SCRIPT := ld_script_es.txt
+  endif #SPANISH
 LD_SCRIPT_DEPS := $(OBJ_DIR)/sym_bss.ld $(OBJ_DIR)/sym_common.ld $(OBJ_DIR)/sym_ewram.ld
 else
 LD_SCRIPT := ld_script_modern.txt
@@ -379,9 +379,10 @@ firered_modern:        ; @$(MAKE) GAME_VERSION=FIRERED MODERN=1
 firered_rev1_modern:   ; @$(MAKE) GAME_VERSION=FIRERED GAME_REVISION=1 MODERN=1
 leafgreen_modern:      ; @$(MAKE) GAME_VERSION=LEAFGREEN MODERN=1
 leafgreen_rev1_modern: ; @$(MAKE) GAME_VERSION=LEAFGREEN GAME_REVISION=1 MODERN=1
-firered_es_modern:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
+firered_es_modern:     ; @$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH MODERN=1
 
 #test
+#Ubuntu 22.04 use: time make rojofuego -j$NPROC
 rojofuego:
 	@$(MAKE) GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH
 	@$(MAKE) syms GAME_VERSION=FIRERED GAME_LANGUAGE=SPANISH

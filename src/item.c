@@ -17,7 +17,7 @@ void SortAndCompactBagPocket(struct BagPocket * pocket);
 
 // Item descriptions and data
 #if ENGLISH
-#include "data/items.h"
+#include "data/items_en.h"
 #elif SPANISH
 #include "data/items_es.h"
 #endif
