@@ -6299,14 +6299,7 @@ void *OakSpeechNidoranFGetBuffer(u8 bufferId)
 }
 
 #if SPANISH
-/**
- * En el offset 0x08044D1C de Rojo Fuego se encontró 3 nuevas
- * funciones que no se encontraban en Fire Red. Al parecer es
- * un intento por cambiar el orden de la clase y el nombre de
- * entrenador cuando el trainer es del TEAM ROCKET.
-*/
-
-//Is_trainer_class_n_name_in_src
+//Is trainer class n name in src ?
 static bool32 es_sub_8044D1C(u8 *src)
 {
     u8 *r1;
@@ -6331,7 +6324,7 @@ static bool32 es_sub_8044D1C(u8 *src)
             break;
         case TRUE:
             if (r1[0] == 0xFD && r1[1] == 0x1D)//B_TRAINER1_NAME = FD 1D
-                return 1;
+                return TRUE;
             break;
         }
         r1++;
@@ -6340,7 +6333,7 @@ static bool32 es_sub_8044D1C(u8 *src)
     return FALSE;
 }
 
-//Swap_trainer_class_n_name_gStringVar3
+//Swap trainer class n name gStringVar3
 static void es_sub_8044D64()
 {
     u8 *r1;
