@@ -1261,6 +1261,10 @@ static bool32 DoCopyrightOrTheEndGfxScene(void)
         if (!gPaletteFade.active)
         {
             sCreditsMgr->subseqno = 0;
+#if SPANISH
+            if (sCreditsMgr->whichMon)
+                FadeOutMapMusic(16);
+#endif
             return TRUE;
         }
         break;
