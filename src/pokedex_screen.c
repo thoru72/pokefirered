@@ -598,9 +598,15 @@ static const struct WindowTemplate sWindowTemplate_CategoryMonInfo = {
 const struct WindowTemplate sWindowTemplate_DexEntry_MonPic = {
     .bg = 1,
     .tilemapLeft = 19,
+#if ENGLISH
     .tilemapTop = 3,
     .width = 8,
     .height = 8,
+#elif SPANISH
+    .tilemapTop = 2,
+    .width = 8,
+    .height = 9,
+#endif
     .paletteNum = 9,
     .baseBlock = 0x01a8
 };
@@ -612,7 +618,11 @@ const struct WindowTemplate sWindowTemplate_DexEntry_SpeciesStats = {
     .width = 13,
     .height = 8,
     .paletteNum = 0,
+#if ENGLISH
     .baseBlock = 0x01e8
+#elif SPANISH
+    .baseBlock = 0x01f0
+#endif
 };
 
 const struct WindowTemplate sWindowTemplate_DexEntry_FlavorText = {
@@ -620,9 +630,15 @@ const struct WindowTemplate sWindowTemplate_DexEntry_FlavorText = {
     .tilemapLeft = 0,
     .tilemapTop = 11,
     .width = 30,
+#if ENGLISH
     .height = 7,
     .paletteNum = 0,
     .baseBlock = 0x0250
+#elif SPANISH
+    .height = 8,
+    .paletteNum = 0,
+    .baseBlock = 0x0258
+#endif
 };
 
 const struct WindowTemplate sWindowTemplate_AreaMap_MonIcon = {
@@ -2933,7 +2949,7 @@ void es_sub_8105C78(u8 windowId, u16 species, u8 x, u8 y, bool8 mode)
         }
         else
         {
-            buffer[1] = CHAR_0 + result;
+            buffer[0] = CHAR_0 + result;
             output = TRUE;
         }
 
@@ -3088,7 +3104,11 @@ static u8 DexScreen_DrawMonDexPage(bool8 justRegistered)
 
     // Dex entry
     FillWindowPixelBuffer(sPokedexScreenData->windowIds[2], PIXEL_FILL(0));
+#if ENGLISH
     DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 8);
+#elif SPANISH
+    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 0);
+#endif
     PutWindowTilemap(sPokedexScreenData->windowIds[2]);
     CopyWindowToVram(sPokedexScreenData->windowIds[2], COPYWIN_GFX);
 
