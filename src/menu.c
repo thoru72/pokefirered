@@ -248,6 +248,20 @@ void ClearTopBarWindow(void)
     }
 }
 
+#if SPANISH
+void es_sub_810F8F0(u8 a0)
+{
+    if (sTopBarWindowId != 0xFF)
+    {
+        FillWindowPixelBuffer(sTopBarWindowId, PIXEL_FILL(0xF));
+        if (a0)
+        {
+            CopyWindowToVram(sTopBarWindowId, COPYWIN_FULL);
+        }
+    }
+}
+#endif
+
 void DestroyTopBarWindow(void)
 {
     if (sTopBarWindowId != 0xFF)
