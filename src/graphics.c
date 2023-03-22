@@ -1152,7 +1152,11 @@ const u32 gGhostFrontPic[] = INCBIN_U32("graphics/pokemon/ghost/front.4bpp.lz");
 
 const u16 gFireRedMenuElements1_Pal[] = INCBIN_U16("graphics/interface/dex_caught_pokeball.gbapal");
 const u16 gFireRedMenuElements2_Pal[] = INCBIN_U16("graphics/interface/pokemon_types.gbapal");
+#if ENGLISH
 const u8 gFireRedMenuElements_Gfx[] = INCBIN_U8("graphics/interface/dex_caught_pokeball_and_pokemon_types.4bpp");
+#elif SPANISH
+const u8 gFireRedMenuElements_Gfx[] = INCBIN_U8("graphics/interface/dex_caught_pokeball_and_pokemon_types_es.4bpp");
+#endif
 
 const u16 gUnknown_8E97DDC[] = INCBIN_U16("graphics/interface/learn_move.gbapal");
 const u32 gUnknown_8E97DFC[] = INCBIN_U32("graphics/interface/learn_move.4bpp.lz");
@@ -1355,9 +1359,15 @@ const u32 gCreditsPokeballBgGfxTiles[] = INCBIN_U32("graphics/credits/unk_8EAAB9
 const u32 gCreditsPokeballBgGfxMap[] = INCBIN_U32("graphics/credits/unk_8EAB30C.bin.lz");
 
 #ifdef FIRERED
+#if ENGLISH
 const u16 gGraphics_TitleScreen_GameTitleLogoPals[] = INCBIN_U16("graphics/title_screen/firered/game_title_logo.gbapal");
 const u8 gGraphics_TitleScreen_GameTitleLogoTiles[] = INCBIN_U8("graphics/title_screen/firered/game_title_logo.8bpp.lz");
 const u8 gGraphics_TitleScreen_GameTitleLogoMap[] = INCBIN_U8("graphics/title_screen/firered/game_title_logo.bin.lz");
+#elif SPANISH
+const u16 gGraphics_TitleScreen_GameTitleLogoPals[] = INCBIN_U16("graphics/title_screen/firered/game_title_logo_es.gbapal");
+const u8 gGraphics_TitleScreen_GameTitleLogoTiles[] = INCBIN_U8("graphics/title_screen/firered/game_title_logo_es.8bpp.lz");
+const u8 gGraphics_TitleScreen_GameTitleLogoMap[] = INCBIN_U8("graphics/title_screen/firered/game_title_logo_es.bin.lz");
+#endif//ENGLISH/SPANISH
 const u16 gGraphics_TitleScreen_BoxArtMonPals[] = INCBIN_U16("graphics/title_screen/firered/box_art_mon.gbapal");
 const u8 gGraphics_TitleScreen_BoxArtMonTiles[] = INCBIN_U8("graphics/title_screen/firered/box_art_mon.4bpp.lz");
 const u8 gGraphics_TitleScreen_BoxArtMonMap[] = INCBIN_U8("graphics/title_screen/firered/box_art_mon.bin.lz");
@@ -1365,7 +1375,7 @@ const u16 gGraphics_TitleScreen_BackgroundPals[] = INCBIN_U16("graphics/title_sc
 const u8 gGraphics_TitleScreen_CopyrightPressStartTiles[] = INCBIN_U8("graphics/title_screen/copyright_press_start.4bpp.lz");
 const u8 gGraphics_TitleScreen_CopyrightPressStartMap[] = INCBIN_U8("graphics/title_screen/copyright_press_start.bin.lz");
 const u16 gTitleScreen_Slash_Pal[] = INCBIN_U16("graphics/title_screen/firered/slash.gbapal");
-#endif
+#endif //FIRERED
 
 #ifdef LEAFGREEN
 const u16 gGraphics_TitleScreen_GameTitleLogoPals[] = INCBIN_U16("graphics/title_screen/leafgreen/game_title_logo.gbapal");
