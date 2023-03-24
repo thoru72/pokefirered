@@ -153,11 +153,21 @@ static void CreateTrainerCardTrainerPic(void);
 
 // Data
 static const u32 sTrainerCardStickers_Gfx[] = INCBIN_U32("graphics/trainer_card/stickers.4bpp.lz");
+#if ENGLISH
 static const u32 sHoennTrainerCardFront_Tilemap[] = INCBIN_U32("graphics/trainer_card/front_hoenn.bin");
+#elif SPANISH
+static const u32 sHoennTrainerCardFront_Tilemap[] = INCBIN_U32("graphics/trainer_card/front_hoenn_es.bin");
+#endif
 static const u32 sKantoTrainerCardFront_Tilemap[] = INCBIN_U32("graphics/trainer_card/front.bin");
 static const u32 sHoennTrainerCardBack_Tilemap[] = INCBIN_U32("graphics/trainer_card/back_hoenn.bin");
+//
+#if ENGLISH
 static const u32 sKantoTrainerCardBack_Tilemap[] = INCBIN_U32("graphics/trainer_card/back.bin");
 static const u32 sHoennTrainerCardFrontLink_Tilemap[] = INCBIN_U32("graphics/trainer_card/front_hoenn_link.bin");
+#elif SPANISH
+static const u32 sKantoTrainerCardBack_Tilemap[] = INCBIN_U32("graphics/trainer_card/back_es.bin");
+static const u32 sHoennTrainerCardFrontLink_Tilemap[] = INCBIN_U32("graphics/trainer_card/front_hoenn_link_es.bin");
+#endif
 static const u32 sKantoTrainerCardFrontLink_Tilemap[] = INCBIN_U32("graphics/trainer_card/front_link.bin");
 static const u32 sHoennTrainerCardBg_Tilemap[] = INCBIN_U32("graphics/trainer_card/bg_hoenn.bin");
 static const u32 sKantoTrainerCardBg_Tilemap[] = INCBIN_U32("graphics/trainer_card/bg.bin");
@@ -340,10 +350,20 @@ static bool8 (*const sTrainerCardFlipTasks[])(struct Task *) =
     Task_EndCardFlip
 };
 
+#if ENGLISH
+    #define BACKNAME_X_POS  0x8A
+    #define STARTYOFFSET2   6
+#elif SPANISH
+    #define BACKNAME_X_POS 0x94
+    #define STARTYOFFSET2   7
+#endif
+
 static const u8 sTrainerCardFrontNameXPositions[] = {0x14, 0x10};
 static const u8 sTrainerCardFrontNameYPositions[] = {0x1D, 0x21};
+#if ENGLISH
 static const u8 sTrainerCardIdXPositions[] = {0x8E, 0x80};
 static const u8 sTrainerCardIdYPositions[] = {0xA, 0x9};
+#endif
 static const u8 *const sTimeColonTextColors[] = {sTrainerCardTextColors, sTimeColonInvisibleTextColors};
 static const u8 sTrainerCardTimeHoursXPositions[] = {0x65, 0x55};
 static const u8 sTrainerCardTimeHoursYPositions[] = {0x77, 0x67};
@@ -351,14 +371,17 @@ static const u8 sTrainerCardTimeMinutesXPositions[] = {0x7C, 0x6C};
 static const u8 sTrainerCardTimeMinutesYPositions[] = {0x58, 0x59};
 static const u8 sTrainerCardProfilePhraseXPositions[] = {0x73, 0x69};
 static const u8 sTrainerCardProfilePhraseYPositions[] = {0x82, 0x78};
-static const u8 sTrainerCardBackNameXPositions[] = {0x8A, 0xD8};
+static const u8 sTrainerCardBackNameXPositions[] = {BACKNAME_X_POS, 0xD8};
 static const u8 sTrainerCardBackNameYPositions[] = {0xB, 0xA};
 static const u8 sTrainerCardHofDebutXPositions[] = {0xA, 0x10, 0x0, 0x0};
 static const u8 *const sLinkTrainerCardRecordStrings[] = {gText_LinkBattles, gText_LinkCableBattles};
 static const u8 sPokemonIconPalSlots[] = {5, 6, 7, 8, 9, 10};
 static const u8 sPokemonIconXOffsets[] = {0, 4, 8, 12, 16, 20};
 static const u8 sStickerPalSlots[] = {11, 12, 13, 14};
-static const u8 sStarYOffsets[] = {7, 6, 0, 0};
+static const u8 sStarYOffsets[] = {7, STARTYOFFSET2, 0, 0};
+
+#undef BACKNAME_X_POS
+#undef STARTYOFFSET2
 
 static const struct TrainerCard sLinkPlayerTrainerCardTemplate1 = 
 {
