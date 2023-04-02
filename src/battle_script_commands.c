@@ -5845,7 +5845,7 @@ static void DrawLevelUpBannerText(void)
     *++txtPtr = 0;
 #elif SPANISH
     *++txtPtr = CHAR_EXTRA_SYMBOL;
-    *++txtPtr = 0x18;//CHAR_LV_2 BPRS
+    *++txtPtr = CHAR_LV_2_END;
     *++txtPtr = EXT_CTRL_CODE_BEGIN;
     *++txtPtr = EXT_CTRL_CODE_CLEAR;
     *++txtPtr = 5;

@@ -221,6 +221,7 @@
 #define CHAR_BULLSEYE          0x15
 #define CHAR_TRIANGLE          0x16
 #define CHAR_CROSS_X           0x17
+#define CHAR_LV_2_END          0x18
 
 #define EXT_CTRL_CODE_COLOR                  0x01
 #define EXT_CTRL_CODE_HIGHLIGHT              0x02

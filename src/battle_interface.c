@@ -756,11 +756,17 @@ void InitBattlerHealthboxCoords(u8 battler)
     UpdateSpritePos(gHealthboxSpriteIds[battler], x, y);
 }
 
+#if ENGLISH
+    #define TEXT_LV _("{LV_2}")
+#elif SPANISH
+    #define TEXT_LV _("{LV_3}")
+#endif
+
 static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
 {
     u32 windowId, spriteTileNum;
     u8 *windowTileData;
-    u8 text[16] = _("{LV_2}");
+    u8 text[16] = TEXT_LV;
     u32 xPos;
     u8 *objVram;
 
