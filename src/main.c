@@ -30,14 +30,14 @@ const u8 gGameLanguage = GAME_LANGUAGE;
 
 #if MODERN
 const char BuildDateTime[] = __DATE__ " " __TIME__;
-#else
-  #if REVISION == 0 && ENGLISH
+#elif REVISION == 0
+  #if ENGLISH
     const char BuildDateTime[] = "2004 04 26 11:20";
-  #elif REVISION == 0 && SPANISH
+  #elif SPANISH
     const char BuildDateTime[] = "2004 07 20 15:50";
-  #else
+  #endif //ENGLISH
+#else
 const char BuildDateTime[] = "2004 07 20 09:30";
-#endif //REVISION
 #endif //MODERN
 
 const IntrFunc gIntrTableTemplate[] =
