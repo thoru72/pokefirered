@@ -63,6 +63,9 @@ $(CASTFORMGFXDIR)/shiny.gbapal: $(CASTFORMGFXDIR)/normal/shiny.gbapal \
 $(FONTGFXDIR)/latin_small.latfont: $(FONTGFXDIR)/latin_small.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/latin_small_es.latfont: $(FONTGFXDIR)/latin_small_es.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/japanese_small.fwjpnfont: $(FONTGFXDIR)/japanese_small.png
 	$(GFX) $< $@
 
@@ -72,16 +75,25 @@ $(FONTGFXDIR)/japanese_tall.fwjpnfont: $(FONTGFXDIR)/japanese_tall.png
 $(FONTGFXDIR)/latin_normal.latfont: $(FONTGFXDIR)/latin_normal.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/latin_normal_es.latfont: $(FONTGFXDIR)/latin_normal_es.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/japanese_normal.fwjpnfont: $(FONTGFXDIR)/japanese_normal.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/latin_male.latfont: $(FONTGFXDIR)/latin_male.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/latin_male_es.latfont: $(FONTGFXDIR)/latin_male_es.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/japanese_male.fwjpnfont: $(FONTGFXDIR)/japanese_male.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/latin_female.latfont: $(FONTGFXDIR)/latin_female.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/latin_female_es.latfont: $(FONTGFXDIR)/latin_female_es.png
 	$(GFX) $< $@
 
 $(FONTGFXDIR)/japanese_female.fwjpnfont: $(FONTGFXDIR)/japanese_female.png
