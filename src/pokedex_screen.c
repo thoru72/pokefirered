@@ -23,6 +23,24 @@
 
 #define TAG_AREA_MARKERS 2001
 
+#if ENGLISH
+    #define WTDE_MONPIC_TILEMAPTOP 3
+    #define WTDE_MONPIC_HEIGHT 8
+    #define WTDE_SPECIESSTATS_BASEBLOCK 0x01e8
+    #define WTDE_FLAVORTEXT_HEIGHT 7
+    #define WTDE_FLAVORTEXT_BASEBLOCK 0x0250
+
+    #define FLAVOR_TEXT_Y 8
+#elif SPANISH
+    #define WTDE_MONPIC_TILEMAPTOP 2
+    #define WTDE_MONPIC_HEIGHT 9
+    #define WTDE_SPECIESSTATS_BASEBLOCK 0x01f0
+    #define WTDE_FLAVORTEXT_HEIGHT 8
+    #define WTDE_FLAVORTEXT_BASEBLOCK 0x0258
+
+    #define FLAVOR_TEXT_Y 0
+#endif
+
 enum TextMode {
     TEXT_LEFT,
     TEXT_CENTER,
@@ -603,15 +621,9 @@ static const struct WindowTemplate sWindowTemplate_CategoryMonInfo = {
 const struct WindowTemplate sWindowTemplate_DexEntry_MonPic = {
     .bg = 1,
     .tilemapLeft = 19,
-#if ENGLISH
-    .tilemapTop = 3,
+    .tilemapTop = WTDE_MONPIC_TILEMAPTOP,
     .width = 8,
-    .height = 8,
-#elif SPANISH
-    .tilemapTop = 2,
-    .width = 8,
-    .height = 9,
-#endif
+    .height = WTDE_MONPIC_HEIGHT,
     .paletteNum = 9,
     .baseBlock = 0x01a8
 };
@@ -623,11 +635,7 @@ const struct WindowTemplate sWindowTemplate_DexEntry_SpeciesStats = {
     .width = 13,
     .height = 8,
     .paletteNum = 0,
-#if ENGLISH
-    .baseBlock = 0x01e8
-#elif SPANISH
-    .baseBlock = 0x01f0
-#endif
+    .baseBlock = WTDE_SPECIESSTATS_BASEBLOCK
 };
 
 const struct WindowTemplate sWindowTemplate_DexEntry_FlavorText = {
@@ -635,15 +643,9 @@ const struct WindowTemplate sWindowTemplate_DexEntry_FlavorText = {
     .tilemapLeft = 0,
     .tilemapTop = 11,
     .width = 30,
-#if ENGLISH
-    .height = 7,
+    .height = WTDE_FLAVORTEXT_HEIGHT,
     .paletteNum = 0,
-    .baseBlock = 0x0250
-#elif SPANISH
-    .height = 8,
-    .paletteNum = 0,
-    .baseBlock = 0x0258
-#endif
+    .baseBlock = WTDE_FLAVORTEXT_BASEBLOCK
 };
 
 const struct WindowTemplate sWindowTemplate_AreaMap_MonIcon = {
@@ -3109,11 +3111,7 @@ static u8 DexScreen_DrawMonDexPage(bool8 justRegistered)
 
     // Dex entry
     FillWindowPixelBuffer(sPokedexScreenData->windowIds[2], PIXEL_FILL(0));
-#if ENGLISH
-    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 8);
-#elif SPANISH
-    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, 0);
-#endif
+    DexScreen_PrintMonFlavorText(sPokedexScreenData->windowIds[2], sPokedexScreenData->dexSpecies, 0, FLAVOR_TEXT_Y);
     PutWindowTilemap(sPokedexScreenData->windowIds[2]);
     CopyWindowToVram(sPokedexScreenData->windowIds[2], COPYWIN_GFX);
 
