@@ -948,20 +948,25 @@ bool8 sub_8111C2C(void)
 
 void sub_8111C68(void)
 {
-    if (sQuestLogCurrentScene.sceneEndMode == 0)
+    if (sQuestLogCurrentScene.sceneEndMode != 0)
+        return;
+
+#if SPANISH
+    if (gPaletteFade.active)
+        return;
+#endif
+
+    if (JOY_NEW(A_BUTTON))
     {
-        if (JOY_NEW(A_BUTTON))
-        {
-            sQuestLogCurrentScene.sceneEndMode = 2;
-            gQuestLogPlaybackState = 0;
-            QuestLog_BeginFadeAtEndOfScene(-3);
-        }
-        else if (JOY_NEW(B_BUTTON))
-        {
-            sQuestLogCurrentScene.sceneEndMode = 1;
-            gQuestLogPlaybackState = 0;
-            QuestLog_SkipToEndOfPlayback(-3);
-        }
+        sQuestLogCurrentScene.sceneEndMode = 2;
+        gQuestLogPlaybackState = 0;
+        QuestLog_BeginFadeAtEndOfScene(-3);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        sQuestLogCurrentScene.sceneEndMode = 1;
+        gQuestLogPlaybackState = 0;
+        QuestLog_SkipToEndOfPlayback(-3);
     }
 }
 
