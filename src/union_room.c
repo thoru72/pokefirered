@@ -1035,6 +1035,9 @@ static void Task_TryJoinLinkGroup(u8 taskId)
             case ACTIVITY_WONDER_CARD:
             case ACTIVITY_WONDER_NEWS:
                 data->state = LG_STATE_READY_START_ACTIVITY;
+#if SPANISH
+                return;
+#endif
                 break;
             }
         }
@@ -1599,6 +1602,9 @@ static void Task_StartActivity(u8 taskId)
         SetMainCallback2(CB2_TransitionToCableClub);
         break;
     case ACTIVITY_TRADE | IN_UNION_ROOM:
+#if SPANISH
+        CleanupOverworldWindowsAndTilemaps();
+#endif
         CreateTask(Task_StartUnionRoomTrade, 0);
         break;
     case ACTIVITY_CHAT:
@@ -1635,6 +1641,10 @@ static void Task_StartActivity(u8 taskId)
 
     DestroyTask(taskId);
     gSpecialVar_Result = LINKUP_SUCCESS;
+#if SPANISH
+    if (sPlayerCurrActivity == (ACTIVITY_TRADE | IN_UNION_ROOM))
+        return;
+#endif
     UnlockPlayerFieldControls();
 }
 
