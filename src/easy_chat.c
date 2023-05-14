@@ -215,7 +215,6 @@ u8 *ConvertEasyChatWordsToString(u8 *dest, const u16 *src, u16 columns, u16 rows
 }
 
 #if SPANISH
-//es_ConvertEasyChatWordsToString
 u8 *es_sub_80BDAE0(u8 *dest, const u16 *src, u16 columns, u16 rows)
 {
     u16 i, j, k;
