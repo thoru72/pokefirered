@@ -1,11 +1,19 @@
 ViridianCity_School_Text_TryingToMemorizeNotes::
+    .ifdef ENGLISH
     .string "Whew! I'm trying to memorize all my\n"
     .string "notes.$"
-
+    .ifdef SPANISH
+    .string "¡Uf! Estoy tratando de memorizar todas mis\n"
+    .string "notas.$"
 ViridianCity_School_Text_ReadBlackboardCarefully::
+    .ifdef ENGLISH
     .string "Okay!\p"
     .string "Be sure to read what's on the\n"
     .string "blackboard carefully!$"
+    .ifdef SPANISH
+.string "¡Bueno!\p"
+    .string "Asegúrese de leer lo que está en la\n"
+    .string "pizarra con cuidado!$"
 
 ViridianCity_School_Text_NotebookFirstPage::
     .string "Let's check out the notebook.\p"
